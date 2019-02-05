@@ -1,16 +1,23 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { addContent, toggleContent } from '../actions'
-import { Field, reduxForm } from 'redux-form'
+import { Field, reduxForm ,reset} from 'redux-form'
 
 function submit(value,dispatch){
     let sample =dispatch(addContent(value))
     console.log('submit関数',sample);
 }
 
+function submitMyform(data){
+    const {createRecord, reset } = this.props;
+    return createRecord(data ).then(()=>{
+        reset()
+    });
+}
+
 //下記の"props"は下のreduxForm関数から引き継いだ"props"である
 let ContactForm = props => {
-    const { handleSubmit } = props
+    const { handleSubmit ,reset} = props
     console.log(props);
     // console.log({handleSubmit});
     return (
@@ -30,9 +37,12 @@ let ContactForm = props => {
     )
 }
 
+const afterSubmit = (result, dispatch) =>dispatch(reset('contentForm'))
+
 //下記のコードで、"ContactForm"を"redux-form"のオブジェクトへと結合している
 ContactForm = reduxForm({
-    form: 'contentForm'
+    form: 'contentForm',
+    onSubmitSuccess: afterSubmit
 })(ContactForm)
 
 //（疑問）redux-formのようなライブラリを使用する場合には、

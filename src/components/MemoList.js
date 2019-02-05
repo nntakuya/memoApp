@@ -24,5 +24,9 @@ const mapStateToProps = state => (
     memos:state.memos
 })
 
+// const mapDispatchToProps = dispatch => (
+//     console.log('mapDispatchToProps dispatch',dispatch)
+// )
+
 export default connect(mapStateToProps,null)(MemoList)
 // export default MemoList

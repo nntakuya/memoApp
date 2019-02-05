@@ -1,5 +1,6 @@
 export const ADD_CONTENT = 'ADD_CONTENT'
 export const TOGGLE_CONTENT = 'TOGGLE_CONTENT'
+export const ACCOUNT_SAVE_SUCCES = 'ACCOUNT_SAVE_SUCCES'
 
 // Action Creators
 
